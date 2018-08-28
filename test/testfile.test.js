@@ -1,12 +1,15 @@
 var FakeStableCoin = artifacts.require("./FakeStableCoin.sol");
 var EtherOptions = artifacts.require("./EtherOptions.sol");
 var ERC20Proxy = artifacts.require("./ERC20Proxy.sol");
-
+var fscAddr;
+var eoptAddr;
+var proxyAddr;
 
 
 contract("FakeStableCoin", async (accounts) => {
     it("Should put 100000000 fsc in the first account", async () => {
         let instance = await FakeStableCoin.deployed();
+        fscAddr = instance.address;
         let balance = await instance.getBalance(accounts[0]);
         assert.equal(balance.valueOf(), 100000000);
         })
@@ -51,10 +54,12 @@ contract("FakeStableCoin", async (accounts) => {
 contract("ERC20Proxy", async (accounts) => {
     it('Should store the correct EtherOptions address', async () => {
         let eopt = await EtherOptions.deployed();
+        eoptAddr = eopt.address;
         let proxy = await ERC20Proxy.deployed();
-        let eoptAddr = await proxy.getEtherOptionsAddr.call();
+        proxyAddr = proxy.address;
+        let eoptAddress = await proxy.getEtherOptionsAddr.call();
         
-        assert.equal(eoptAddr, eopt.address);
+        assert.equal(eoptAddress, eopt.address);
     }) 
 
     it('Should accept ether and adjust balances accordingly', async () => {
@@ -63,17 +68,6 @@ contract("ERC20Proxy", async (accounts) => {
         await proxy.send(amount, {from: accounts[0]});
         let balance = await proxy.getBalance.call(accounts[0]);
         assert.equal(balance, amount);
-    })
-
-
-    it('Should approve the etherOptions contract', async () => {
-        let amount = 10;
-        let proxy = await ERC20Proxy.deployed();
-        let eopt = await EtherOptions.deployed();
-        await proxy.approve.call(eopt.address, amount, {from: accounts[0]});
-        let approved = await proxy.allowance.call(accounts[0], eopt.address);
-        assert.equal(approved.toNumber(), amount);
-
     })
 
 
@@ -89,14 +83,6 @@ contract("EtherOptions", async (accounts) => {
 
         assert.equal(fsc.address, fscAddr);
         assert.equal(proxy.address, proxyAddr);
-
-    })
-
-    it("Should have set the block expiration correctly", async (accounts) => {
-        let eopt = await EtherOptions.deployed();
-        let expirationBlock = eopt.getExpirationBlockNum.call();
-
-        assert(expirationBlock, 10000);
 
     })
 });

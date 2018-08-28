@@ -45,12 +45,7 @@
                 </div>
               </div>
             </form>
-            <p>Now that you've approved your WETH, you can mint some ERC20 options!  These options are set to 
-              expire 50,000 blocks from the one in which the EtherOptions contract was deployed. (That's about 7
-              days with 12 second block time on the mainnet).  If you followed the instructions on github, your 
-              ganache testnet should be mining a new block every hundredth of a second. (I apologize in advance if I hurt 
-              anyone's PC) That means your Ether options should be redeemable approximately 8 minutes from the moment
-              you migrated.
+            <p>Now that you've approved your WETH, you can mint some ERC20 options!
             </p>
             <form onSubmit="App.generateOptions(); return false;" role="form">
                 <div class="form-group">
@@ -63,14 +58,7 @@
                   </div>
                 </div>
               </form>
-            <p>These ether options are modeled after the ERC20 fungible token standard, meaning they
-              are tradeable in a manner just like any other ERC20 token.  But,
-              instead of trading an asset with some implicit value, you are trading the 
-              option to purchase one ether for a "strike price" of 500 stablecoins (You should have 100k stablecoins in your account)
-              In order to exercise option, you need to approve custodial access of 500 stablecoins to the EtherOptions smart contract.
-              Once the correct block height has been reached (migration block + 50,000), feel free to redeem your options by specifying the amount
-              you'd like to redeem and clicking the "Redeem Option" button.
-            </p>
+              <p>Approve your stablecoins so that you can exercise your options when they expire</p>
             <form onSubmit="App.approveFsc(); return false;" role="form">
                 <div class="form-group">
                   <div class="input-group">
@@ -82,7 +70,11 @@
                   </div>
                 </div>
               </form>
-              <br/>
+              <p>Input the amount of stablecoin you'd like to spend to redeem your calls.  Keep in mind
+                that the strikeprice for these calls is 500 stablecoin, input values must be in multiples of 500
+                or else the contract will throw. Once the correct block height has been reached (migration block + 500), feel free to redeem your options by specifying the amount
+                you'd like to redeem and clicking the "Redeem Option" button.
+              </p>
               <form onSubmit="App.redeemOptions(); return false;" role="form">
                   <div class="form-group">
                     <div class="input-group">
