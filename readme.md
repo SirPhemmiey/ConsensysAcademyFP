@@ -90,3 +90,5 @@ Finally, once the expiration block has passed, redeem your calls!
 ![screen shot 2018-08-28 at 2 25 51 am](https://user-images.githubusercontent.com/20116582/44704627-09a71400-aa6a-11e8-81b7-afd9de30dca3.png)
 
 Currently, the application only handles minting and redeeming ether calls.  Future work will involve decentralized exchange functionality (I hope build an ether options exchange on top of the 0x protocol) and an ether options factory contract with which users can generate their own custom ERC20 options contracts.
+
+Note: I did not have time to write the requisite 5 tests per contract.  
