@@ -1,0 +1,17 @@
+{
+  "name": "ether-options",
+  "version": "1.0.0",
+  "description": "decentralized ethereum options",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "author": "Matt",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
