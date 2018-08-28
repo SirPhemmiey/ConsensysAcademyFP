@@ -73,7 +73,8 @@ contract EtherOptions is StandardToken, Ownable {
     }
 
     /**
-     * @notice redeems owned contracts 
+     * @notice redeems owned contracts after expiration block
+     * @param _amount the amount of options to be redeemed
      */
     function redeemOption(uint _amount) public returns (bool success) {
         require(now >= expirationBlock, "Contract not redeemable yet");
@@ -84,7 +85,10 @@ contract EtherOptions is StandardToken, Ownable {
         erc20proxy.payout(_amount/strikePrice, msg.sender);
         return success;
     }
-
+    /**
+     * @notice Allows the owner of the contract to close all unredeemed positions
+     * @dev allows owner to collect any would-be frozen ether
+     */
     function closeUnredeemed() public onlyOwner {
         require(now >= expirationBlock + 2000);
         erc20proxy.payout(totalSupply, owner);
