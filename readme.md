@@ -1,4 +1,4 @@
-# Ether Options!
+# Ether Options
 
 Ether Options is a fully decentralized means of issuing ERC20 compliant base ether call options right on the Ethereum blockchain! 
 
@@ -12,7 +12,7 @@ ERC20Proxy.sol is an ERC20 compliant ether token wrapper that allows users to de
 
 FakeStableCoin.sol is an ERC20 compliant "stable" coin.  This contract is included purely for testing purposes.  For the sake of the final project testing/demonstration, we assume fakestablecoin is a de facto US dollar.  This contract will eventually be deprecated in favor of tether, makerDAI, or some other stable token solution.
 
-EtherOptions.sol is another ERC20 compliant token.  When deployed to the mainnet, EtherOptions calls will be set to expire 50,000 blocks from the one in which the EtherOptions contract was deployed. (That's approximately 7 days with a 12 second block time on the mainnet).  For testing purposes, I set the expiration block to be 500 from deployment.  If you follow the instructions, your ganache testnet should be mining a new block every second.  That means your Ether options should be redeemable approximately 8.3 minutes from the momentyou migrated.
+EtherOptions.sol is another ERC20 compliant token.  When deployed to the mainnet, EtherOptions calls will be set to expire 50,000 blocks from the one in which the EtherOptions contract was deployed. (That's approximately 7 days with a 12 second block time on the mainnet).  For testing purposes, I set the expiration block to be 500 from deployment.  If you follow the instructions, your ganache testnet should be mining a new block every second.  That means your Ether options should be redeemable approximately 8.3 minutes from the moment you migrated.
 
 ### Prerequisites
 
